@@ -10,7 +10,7 @@
 #include <iostream>
 
 std::string Path(const std::string &file) {
-  return std::string("../simple substitution cipher/" + file);
+  return std::string("../simple_substitution_cipher/" + file);
 }
 
 using Encoding = std::vector<std::pair<char, char>>;
@@ -47,13 +47,10 @@ std::string load_file(const std::string &path) {
   std::string file_content;
   std::fstream file;
   file.open(path, std::ios::in);
-  file.unsetf(std::ios::skipws);
+//  file.unsetf(std::ios::skipws);
   char tmp = ' ';
-  while (!file.eof()) {
-	file >> tmp;
-
+  while (file >> std::noskipws >> tmp) {
 	if (tmp >= 'a' && tmp <= 'z') tmp -= 32;
-
 	file_content.push_back(tmp);
   }
 
