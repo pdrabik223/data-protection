@@ -14,3 +14,6 @@ Every letter is shifted by 3 left, so instead of D you get A, E->B, etc. This is
 
 Shift by 13, there are 26 letters in latin alphabet, so ciphered message created by shifting every letter by 13, can be
 decoded by encrypting it once again.
+
+# Big problem of substitution Cipher
+Big problem of substitution Cipher are pairs of letters, for example if one could decode letter *q* the nest one will almost surely be *u*.

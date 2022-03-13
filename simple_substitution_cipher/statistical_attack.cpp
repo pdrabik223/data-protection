@@ -4,6 +4,7 @@
 
 #include "statistical_attack.h"
 #include <cassert>
+#include <set>
 #include <vector>
 #include <iostream>
 FrequencyTable FromEnglishLanguage() {
@@ -52,9 +53,9 @@ FrequencyTable FromText(const std::string &text) {
 
   for (char i: text) {
 	if ((i >= 'A' && i <= 'Z') || (i >= '0' && i <= '9')) frequency_table[i] += 1;
-	else if (i >= 'a' && i <= 'z')frequency_table[i + 32] += 1;
-
+	else if (i >= 'a' && i <= 'z')frequency_table[i - 32] += 1;
   }
+
   float sum = 0;
   for (auto &i: frequency_table)
 	sum += i.second;
@@ -78,21 +79,42 @@ int calculate_average_shift(const FrequencyTable &encrypted_frequencies, const F
 
   assert(encrypted_frequencies.size() == template_frequencies.size());
 
-  std::map<float, char> encrypted_data, template_data;
+  std::multimap<float, char> encrypted_data, template_data;
+
   for (const auto &i: encrypted_frequencies) encrypted_data.insert({i.second, i.first});
   for (const auto &i: template_frequencies) template_data.insert({i.second, i.first});
 
-  std::cout << ToString(encrypted_frequencies) << "encrypted\n template" << ToString(template_frequencies);
+//  std::cout << ToString(encrypted_frequencies) << "encrypted\n template" << ToString(template_frequencies);
 
   std::vector<int> shifts;
 
+  int i_counter = 0;
   for (auto i: encrypted_data) {
-	int shift = 0;
+	int shift = - i_counter;
+	int j_counter = 0;
 	for (auto j: template_data) {
 	  if (i.second == j.second) break;
 	  shift++;
+	  j_counter++;
 	}
+
+//	shift -= j_counter;
+//	if (shift < 0)
+//	  shift += encrypted_frequencies.size();
+	i_counter++;
 	shifts.push_back(shift);
   }
-  return shifts[0];
+
+  std::map<int, int> counters;
+  for (auto i: shifts)
+	++counters[i];
+
+  std::pair<int, int> max(INT_MIN + 1, INT_MIN + 1);
+  for (auto i: counters)
+	if (i.second > max.second) {
+	  max.first = i.first;
+	  max.second = i.second;
+	}
+	if(max.first < 0) max.first += encrypted_frequencies.size();
+  return max.first;
 }

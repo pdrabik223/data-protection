@@ -11,15 +11,19 @@ std::string Path(const std::string &file) {
 }
 
 int main() {
-  std::cout << ToString(from_shift(3));
-
-  auto cipher = from_shift(  22);
+//  std::cout << ToString(from_shift(3));
+  int counter = 0;
+//  for (int i = 0; i < 36; i++) {
+  auto cipher = from_shift(0);
 
   auto message = load_file(Path("lorem_ipsum.txt"));
   message = encode(message, cipher);
-
-
-  std::cout << calculate_average_shift(FromText(message), FromEnglishLanguage());
+calculate_average_shift(FromText(message),FromEnglishLanguage());
+//	std::cout << i << " -> " << prediction << "\n";
+//	if (i == prediction) counter++;
+//  }
+  std::cout << "counter:\t" << counter << "\n";
+  std::cout << "correctness:\t" << counter / 36.0;
 
   return 0;
 }

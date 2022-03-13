@@ -9,3 +9,7 @@ add_executable(substitution_cipher
         "simple_substitution_cipher/substitution_cipher.h"
         "simple_substitution_cipher/statistical_attack.h"
         "simple_substitution_cipher/statistical_attack.cpp")
+add_executable(vingenere_cipher
+        "Vigenere/main.cpp"
+        "Vigenere/vingenere_cipher.h"
+        "Vigenere/vingenere_cipher.cpp")
