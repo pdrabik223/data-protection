@@ -2,6 +2,7 @@
 // Created by piotr on 08/03/2022.
 //
 #include <cassert>
+#include <fstream>
 #include "vingenere_cipher.h"
 
 struct Alphabet {
@@ -97,4 +98,29 @@ std::string &Decrypt(std::string &message, Password &password) {
 	  c = kReversedTabulaRecta[Hash(password.Next(), NormalizeChar(c))];
 	}
   return message;
+}
+std::string load_file(const std::string &path)
+{
+  std::string file_content;
+  std::fstream file;
+  file.open(path, std::ios::in);
+  //  file.unsetf(std::ios::skipws);
+  char tmp = ' ';
+  while (file >> std::noskipws >> tmp)
+  {
+	if (tmp >= 'a' and tmp <= 'z')
+	  tmp -= 32;
+	file_content.push_back(tmp);
+  }
+
+  return file_content;
+}
+void save_file(const std::string &message, const std::string &path)
+{
+  std::string file_content;
+  std::wfstream file;
+  file.open(path, std::ios::out);
+  for (auto &i : message)
+	file << i;
+  file.close();
 }

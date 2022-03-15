@@ -38,4 +38,9 @@ void InitTabulaRecta();
 void InitReversedTabulaRecta();
 std::string &Encrypt(std::string &message, Password &password);
 std::string &Decrypt(std::string &message, Password &password);
+
+/// read file, than correct every small letter to huge
+std::string load_file(const std::string &path);
+
+void save_file(const std::string &message, const std::string &path);
 #endif //DATA_PROTECTION_VIGENERE_VINGENERE_CIPHER_H_
