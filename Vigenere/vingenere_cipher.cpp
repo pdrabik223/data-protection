@@ -5,21 +5,7 @@
 #include <fstream>
 #include "vingenere_cipher.h"
 
-struct Alphabet {
-  static const std::string k_data;
-  static const int alphabet_size;
-  char operator[](int id) {
 
-	if (id >= 0)
-	  return k_data[id % k_data.size()];
-
-	id = -1 * id;
-	id %= k_data.size();
-	id = k_data.size() - id;
-	return k_data[id];
-  }
-
-};
 const std::string Alphabet::k_data = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const int Alphabet::alphabet_size = Alphabet::k_data.size();
 
