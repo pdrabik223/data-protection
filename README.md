@@ -28,3 +28,6 @@ Message is written as binary string.
 
 - permutacja nie ma punktu stałego pi(x) != x
 - jest inwolucją -> pi(pi(x)) = x
+
+
+# DES
