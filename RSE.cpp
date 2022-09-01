@@ -79,12 +79,13 @@ uint64_t ModuloPower(uint64_t base, uint64_t power, uint64_t modulo) {
 	}
   return result;
 }
+
 char Encrypt(char val, uint64_t pow, uint64_t mod) {
   return (char)ModuloPower((int)val, pow, mod);
 }
 int main() {
   srand(time(NULL));
-  std::cout << "r =" << Calculate(7, 10).first << " s = " << Calculate(7, 10).second << std::endl;
+//  std::cout << "r =" << Calculate(7, 10).first << " s = " << Calculate(7, 10).second << std::endl;
 
   uint64_t p, q;
   p = rand() / 2;
@@ -126,9 +127,11 @@ int main() {
   std::cout << "massage to cipher, for example " << message << " :";
   std::cin >> message;
   std::string encrypted_message;
+
   for (auto c: message) {
 	encrypted_message.push_back(Encrypt(c, e, n));
   }
+
   std::string decrypted_message;
   for (auto c: encrypted_message) {
 	decrypted_message.push_back(Encrypt(c, d, n));
@@ -138,6 +141,7 @@ int main() {
   std::cout << "  original message: " << message << std::endl;
   std::cout << " encrypted message: " << encrypted_message << std::endl;
   std::cout << " decrypted message: " << decrypted_message << std::endl;
+
   /*
  * 1. get p , q: from user
  * 2. check p & q for primes
@@ -152,4 +156,8 @@ int main() {
  * 11. display
  *  note: encrypt decrypt one letter at the time or in big chunks or whatever
  */
+
+
+
+
 }

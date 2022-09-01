@@ -4,7 +4,7 @@
 // the task create encoder that takes letters and numbers and encodes them, leave the rest of symbols, polish letters may find they way in.
 #include "substitution_cipher.h"
 
-std::string load_file(const std::string &path)
+std::string LoadFile(const std::string &path)
 {
   std::string file_content;
   std::fstream file;
@@ -20,7 +20,7 @@ std::string load_file(const std::string &path)
 
   return file_content;
 }
-void save_file(const std::string &message, const std::string &path)
+void SaveFile(const std::string &message, const std::string &path)
 {
   std::string file_content;
   std::wfstream file;

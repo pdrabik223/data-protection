@@ -21,7 +21,7 @@ add_executable(vingenere_cipher
 
 add_executable(primes primes/primes.cpp)
 
-add_executable(modulo_power  modulo-power/main.cpp RSE.cpp adler_djb.cpp BW_table.cpp)
-add_executable(rse RSE.cpp)
+add_executable(modulo_power  modulo-power/main.cpp RSE.cpp adler_djb.cpp BW_table.cpp balcer_rsa.cpp)
+add_executable(rsa balcer_rsa.cpp)
 add_executable(adler_djb adler_djb.cpp)
 add_executable(bw_table BW_table.cpp)

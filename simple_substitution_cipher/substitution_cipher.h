@@ -14,9 +14,9 @@ using Encoding = std::vector<std::pair<char, char>>;
 std::string ToString(const Encoding& encoding);
 
 /// read file, than correct every small letter to huge
-std::string load_file(const std::string &path);
+std::string LoadFile(const std::string &path);
 
-void save_file(const std::string &message, const std::string &path);
+void SaveFile(const std::string &message, const std::string &path);
 
 /// create encoding lib, that uses all letters in caps, and numbers
 /// \param shift

@@ -12,6 +12,7 @@
 #include <ciso646>
 static std::map<int, char> kTabulaRecta;
 static std::map<int, char> kReversedTabulaRecta;
+
 char NormalizeChar(char val);
 struct Alphabet {
   static const std::string k_data;
@@ -62,7 +63,7 @@ std::string &Encrypt(std::string &message, Password &password);
 std::string &Decrypt(std::string &message, Password &password);
 
 /// read file, than correct every small letter to huge
-std::string load_file(const std::string &path);
+std::string LoadFile(const std::string &path);
 
-void save_file(const std::string &message, const std::string &path);
+void SaveFile(const std::string &message, const std::string &path);
 #endif //DATA_PROTECTION_VIGENERE_VINGENERE_CIPHER_H_

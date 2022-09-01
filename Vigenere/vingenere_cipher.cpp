@@ -5,7 +5,6 @@
 #include <fstream>
 #include "vingenere_cipher.h"
 
-
 const std::string Alphabet::k_data = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const int Alphabet::alphabet_size = Alphabet::k_data.size();
 
@@ -20,15 +19,14 @@ char NormalizeChar(char val) {
 }
 
 void InitTabulaRecta() {
+  // used for encryption
   int shift = 0;
   Alphabet alphabet;
   for (char a: Alphabet::k_data) {
 	int i = 0;
 	for (char b: Alphabet::k_data) {
-//	  kTabulaRecta[Hash(a, b)] = alphabet[shift + i];
 	  kTabulaRecta.insert({Hash(a, b), alphabet[shift + i]});
 	  i++;
-
 	}
 	shift++;
   }
@@ -40,7 +38,6 @@ void InitReversedTabulaRecta() {
   for (char a: Alphabet::k_data) {
 	int i = 0;
 	for (char b: Alphabet::k_data) {
-//	  kReversedTabulaRecta[Hash(a, b)] = alphabet[shift + i];
 	  kReversedTabulaRecta.insert({Hash(a, b), alphabet[shift + i]});
 	  i++;
 	}
@@ -56,7 +53,6 @@ int Hash(char first, char second) {
   else if (i_first >= '0' and i_first <= '9') i_first -= 48;
   else
 	assert(false and "first is not in dict");
-  // A = 10;
 
   if (i_second >= 'A' and i_second <= 'Z') i_second -= 55;
   else if (i_second >= '0' and i_second <= '9') i_second -= 48;
@@ -66,7 +62,6 @@ int Hash(char first, char second) {
   return i_first * Alphabet::alphabet_size + i_second;
 }
 std::string &Encrypt(std::string &message, Password &password) {
-//  std::string encrypted_message;
   password.Clear();
 
   for (char &c: message) {
@@ -85,15 +80,12 @@ std::string &Decrypt(std::string &message, Password &password) {
 	}
   return message;
 }
-std::string load_file(const std::string &path)
-{
+std::string LoadFile(const std::string &path) {
   std::string file_content;
   std::fstream file;
   file.open(path, std::ios::in);
-  //  file.unsetf(std::ios::skipws);
   char tmp = ' ';
-  while (file >> std::noskipws >> tmp)
-  {
+  while (file >> std::noskipws >> tmp) {
 	if (tmp >= 'a' and tmp <= 'z')
 	  tmp -= 32;
 	file_content.push_back(tmp);
@@ -101,12 +93,11 @@ std::string load_file(const std::string &path)
 
   return file_content;
 }
-void save_file(const std::string &message, const std::string &path)
-{
+void SaveFile(const std::string &message, const std::string &path) {
   std::string file_content;
   std::wfstream file;
   file.open(path, std::ios::out);
-  for (auto &i : message)
+  for (auto &i: message)
 	file << i;
   file.close();
 }
